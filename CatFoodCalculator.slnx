@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="CatFoodCalculator.Core/CatFoodCalculator.Core.csproj" />
+  <Project Path="CatFoodCalculator.WpfApp/CatFoodCalculator.WpfApp.csproj" />
+</Solution>
