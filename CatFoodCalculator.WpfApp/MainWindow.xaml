@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CatFoodCalculator.WpfApp"
         mc:Ignorable="d"
-        Title="Cat Food Calculator" Height="450" Width="800">
+        Title="Kassi toidukoguse kalkulaator" Height="420" Width="520">
     <Grid>
 
     </Grid>

@@ -15,31 +15,31 @@
             totalFoodKg = 0;
             error = "";
 
-            // weight check
-            if (weightKg <= 0)
+            // weight check 
+            if (weightKg <= 0 || weightKg > 30)
             {
-                error = "Kassi kaal peab olema suurem kui 0.";
+                error = "Kassi kaal peab olema suurem kui 0 ja vähem kui 30.";
                 return false;
             }
 
             // calories per 1 kg check
-            if (caloriesPerKg <= 0)
+            if (caloriesPerKg < 1 || caloriesPerKg > 500)
             {
                 error = "Kalorinorm peab olema suurem kui 0.";
                 return false;
             }
 
-            // calorie per 100 g check
-            if (caloriesPer100g <= 0)
+            // calorie per 100g of catfood check
+            if (caloriesPer100g < 1 || caloriesPer100g > 1000) 
             {
-                error = "Toidu kalorsus peab olema suurem kui 0.";
+                error = "Toidu kalorsus peab olema vahemikus 1-1000 kcal/100g.";
                 return false;
             }
             
             // days count check
-            if(days <= 0)
+            if(days < 1 || days > 365)
             {
-                error = "Päevade arv peab olema suurem kui 0.";
+                error = "Päevade arv peab olema vahemikus 1-365.";
                 return false;
             }
 
@@ -49,7 +49,14 @@
             totalFoodKg = dailyFoodGrams * days / 1000;
 
 
+            // rounding
+            dailyFoodGrams = Math.Round(dailyFoodGrams, 1, MidpointRounding.AwayFromZero);
+            totalFoodKg = Math.Round(totalFoodKg, 2, MidpointRounding.AwayFromZero);
+
+
             return true;
+
+            
         }   
     }
 }
