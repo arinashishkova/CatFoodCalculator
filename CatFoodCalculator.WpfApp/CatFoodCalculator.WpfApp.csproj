@@ -9,7 +9,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\cat.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\CatFoodCalculator.Core\CatFoodCalculator.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\cat.ico" />
   </ItemGroup>
 
 </Project>

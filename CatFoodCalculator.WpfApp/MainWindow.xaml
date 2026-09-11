@@ -5,8 +5,200 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CatFoodCalculator.WpfApp"
         mc:Ignorable="d"
-        Title="Kassi toidukoguse kalkulaator" Height="420" Width="520">
-    <Grid>
+        Title="Kassi toidukoguse kalkulaator"
+        Height="540"
+        Width="650"
+        MinHeight="520"
+        MinWidth="620"
+        WindowStartupLocation="CenterScreen"
+        Icon="Assets/cat.ico"
+        Background="#FFF3E3">
+
+    <Window.Resources>
+
+        <!-- Input labels -->
+        <Style x:Key="InputLabelStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="0,10"/>
+        </Style>
+
+        <!-- Input border -->
+        <Style x:Key="InputBorderStyle" TargetType="Border">
+            <Setter Property="CornerRadius" Value="10"/>
+            <Setter Property="BorderBrush" Value="#F39A32"/>
+            <Setter Property="BorderThickness" Value="1.5"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Margin" Value="10,8,0,8"/>
+        </Style>
+
+        <!-- Input fields -->
+        <Style x:Key="InputTextBoxStyle" TargetType="TextBox">
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Padding" Value="10,7"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+
+        <!-- Buttons -->
+        <Style x:Key="RoundedButtonStyle" TargetType="Button">
+            <Setter Property="Width" Value="150"/>
+            <Setter Property="Height" Value="42"/>
+            <Setter Property="Background" Value="#F6B25C"/>
+            <Setter Property="BorderBrush" Value="#E68A23"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="Cursor" Value="Hand"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="10">
+
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+        </Style>
+
+    </Window.Resources>
+
+    <Grid Margin="40">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="270"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Title -->
+        <TextBlock Grid.Row="0"
+                   Grid.ColumnSpan="2"
+                   Text="Kassi toidukoguse kalkulaator"
+                   FontSize="27"
+                   FontWeight="SemiBold"
+                   Margin="0,5,0,25"/>
+
+        <!-- Weight -->
+        <TextBlock Grid.Row="1"
+                   Grid.Column="0"
+                   Text="Kassi kaal (kg):"
+                   Style="{StaticResource InputLabelStyle}"/>
+
+        <Border Grid.Row="1"
+                Grid.Column="1"
+                Style="{StaticResource InputBorderStyle}">
+
+            <TextBox x:Name="WeightTextBox"
+                     Style="{StaticResource InputTextBoxStyle}"/>
+
+        </Border>
+
+        <!-- Calories per kg -->
+        <TextBlock Grid.Row="2"
+                   Grid.Column="0"
+                   Text="Kalorinorm (kcal/kg):"
+                   Style="{StaticResource InputLabelStyle}"/>
+
+        <Border Grid.Row="2"
+                Grid.Column="1"
+                Style="{StaticResource InputBorderStyle}">
+
+            <TextBox x:Name="CaloriesPerKgTextBox"
+                     Style="{StaticResource InputTextBoxStyle}"/>
+
+        </Border>
+
+        <!-- Food calories -->
+        <TextBlock Grid.Row="3"
+                   Grid.Column="0"
+                   Text="Toidu kalorsus (kcal/100 g):"
+                   Style="{StaticResource InputLabelStyle}"/>
+
+        <Border Grid.Row="3"
+                Grid.Column="1"
+                Style="{StaticResource InputBorderStyle}">
+
+            <TextBox x:Name="CaloriesPer100gTextBox"
+                     Style="{StaticResource InputTextBoxStyle}"/>
+
+        </Border>
+
+        <!-- Days -->
+        <TextBlock Grid.Row="4"
+                   Grid.Column="0"
+                   Text="Päevade arv:"
+                   Style="{StaticResource InputLabelStyle}"/>
+
+        <Border Grid.Row="4"
+                Grid.Column="1"
+                Style="{StaticResource InputBorderStyle}">
+
+            <TextBox x:Name="DaysTextBox"
+                     Style="{StaticResource InputTextBoxStyle}"/>
+
+        </Border>
+
+        <!-- Buttons -->
+        <StackPanel Grid.Row="5"
+                    Grid.ColumnSpan="2"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    Margin="0,25,0,15">
+
+            <Button x:Name="CalculateButton"
+                    Content="Arvuta"
+                    Style="{StaticResource RoundedButtonStyle}"
+                    Margin="0,0,12,0"
+                    Click="Calculate_Click"/>
+
+            <Button x:Name="ClearButton"
+                    Content="Tühjenda"
+                    Style="{StaticResource RoundedButtonStyle}"
+                    Click="Clear_Click"/>
+
+        </StackPanel>
+
+        <!-- Result and error -->
+        <Grid Grid.Row="6"
+              Grid.ColumnSpan="2"
+              Margin="0,12,0,0">
+
+            <TextBlock x:Name="ResultTextBlock"
+                       FontSize="17"
+                       FontWeight="SemiBold"
+                       Foreground="#75420F"
+                       TextAlignment="Center"
+                       TextWrapping="Wrap"
+                       VerticalAlignment="Top"/>
+
+            <TextBlock x:Name="ErrorTextBlock"
+                       FontSize="15"
+                       Foreground="#B3261E"
+                       FontWeight="SemiBold"
+                       TextAlignment="Center"
+                       TextWrapping="Wrap"
+                       VerticalAlignment="Top"/>
+
+        </Grid>
 
     </Grid>
+
 </Window>
