@@ -1,4 +1,4 @@
-# CatFoodCalculator
+# CatFoodCalculator 😺 
 
 WPF-rakendus, mis arvutab kassi päevase toidukoguse ja vajaliku toidukoguse valitud perioodiks.
 
